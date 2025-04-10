@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Navbar.css';
 
-export default function Navbar({ sections = [], onLogout}) {
+export default function Navbar({ onLogout}) {
   const [open, setOpen] = useState(true);
   const navigate = useNavigate();
 
