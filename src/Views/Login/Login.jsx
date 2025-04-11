@@ -2,10 +2,19 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
 
-const LOCAL_USER = {
-  usuario: 'admin',
-  contraseña: '1234'
-};
+const LOCAL_USER = [
+  {
+    usuario: 'admin',
+    contraseña: '1234',
+    rol: 'admin'
+  },
+  {
+    usuario: 'visitante',
+    contraseña: '5678',
+    rol: 'visitante'
+  }
+];
+
 
 export default function Login({ onLogin }) {
   
@@ -16,9 +25,14 @@ export default function Login({ onLogin }) {
 
   const handleSubmit = e => {
     e.preventDefault();
-    if (usuario === LOCAL_USER.usuario && contraseña === LOCAL_USER.contraseña) {
-      onLogin(LOCAL_USER);      
-      navigate('/', { replace: true });
+
+    const userFound = LOCAL_USER.find(
+      u => u.usuario === usuario && u.contraseña === contraseña
+    );
+
+    if (userFound){
+      onLogin(userFound);      
+      navigate('/Home', { replace: true });
     } else {
       setError('Usuario o contraseña incorrectos');
     }

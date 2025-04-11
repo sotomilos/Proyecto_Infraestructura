@@ -9,8 +9,13 @@
   }
   
   .header-title {
-    font-size: 24px;
+    font-size: clamp(1rem, 4vw, 24px);
     font-weight: 600;
+    width: auto;
+    height: auto;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   
   .header-right {

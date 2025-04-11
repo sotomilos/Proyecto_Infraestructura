@@ -2,67 +2,76 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Navbar.css';
 
-export default function Navbar({ onLogout}) {
+export default function Navbar({ onLogout, logoutRedirect = '/login', sections = [] }) {
   const [open, setOpen] = useState(true);
   const navigate = useNavigate();
 
-  const sections = [
-    {
-      title: 'Infraestructura de Red T.I',
-      links: [{ text: 'Control Redes RioCas', href: '#' }],
-    },
-    {
-      title: 'Control Inventarios RioCas',
-      links: [
-        { text: 'Control Computadoras RioCas', href: '#' },
-        { text: 'Control Impresoras RioCas', href: '#' },
-        { text: 'Control Tabletas RioCas', href: '#' },
-        { text: 'Control UPS RioCas', href: '#' },
-      ],
-    },
-    {
-      title: 'Infraestructura de Red O.T',
-      links: [{ text: 'Plantas Riopaila Castilla O.T', href: '#' }],
-    },
-  ];
-
   return (
-    <nav className={`app-nav ${open ? 'open' : 'closed'}`}>
-      <button 
-        className="nav-toggle" 
-        onClick={() => setOpen(o => !o)}
-        aria-label="Toggle menu"
+    <>
+      <nav className={`app-nav ${open ? 'open' : 'closed'}`}>
+      <span
+        className="nav-toggle"
+        onClick={() => setOpen(false)}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setOpen(false)}
+        aria-label="Cerrar menú"  
       >
-        ☰
-      </button>
-      <ul className="nav-list">
-        {sections.map(sec => (
-          <li key={sec.title} className="nav-section">
-            <h3 className="nav-section-title">{sec.title}</h3>
-            <ul>
-              {sec.links.map(link => (
-                <li key={link.text}>
-                <button 
-                  className="nav-link" 
-                  onClick={() => navigate(link.href)}
-                >
-                  {link.text} <span className="nav-arrow">›</span>
-                </button>
-              </li>
-              ))}
-            </ul>
-          </li>
-        ))}
-      </ul>
-      <button 
-        className="nav-logout" 
-        onClick={() => {
-          onLogout();
-          navigate('/login', { replace: true });
-        }}
-      >
-        ‹ Salir
-      </button>
-    </nav>
+          ✕
+        </span>
+
+        <ul className="nav-list">
+          {sections.map(sec => (
+            <li key={sec.title} className="nav-section">
+              <h3 className="nav-section-title">{sec.title}</h3>
+              <ul>
+                {sec.links.map(link => (
+                  <li 
+                    key={link.text}
+                    className='nav-link'
+                    onClick={() => navigate(link.href)}
+                  >
+                    <span>{link.text}</span>
+                    <img
+                      src={ link.icon ||'/Icono_action.png'}
+                      alt='flecha'
+                      className='nav-arrow'                    
+                    ></img>
+                  </li>
+                ))}
+              </ul>
+            </li>
+          ))}
+        </ul>
+
+        <button
+          className="nav-logout"
+          onClick={() => {
+            onLogout();
+            navigate(logoutRedirect, { replace: true });
+          }}
+        >
+          <img 
+            src="/Icono_exit.png" 
+            alt="Icono salir"
+            className='logout-icon' 
+          />
+          Salir
+        </button>
+      </nav>
+
+      {!open && (
+        <span
+          className="nav-show-button"
+          onClick={() => setOpen(true)}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setOpen(true)}
+          aria-label="Mostrar menú"
+        >
+          ☰
+        </span>
+      )}
+    </>
   );
 }
