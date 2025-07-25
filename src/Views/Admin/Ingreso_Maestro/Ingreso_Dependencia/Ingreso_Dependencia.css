@@ -1,0 +1,53 @@
+.ingreso-dependencia-main,
+.form-section,
+.table-section {
+  background-color: var(--bg-alt);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 1rem;
+  align-items: center;
+}
+
+.form-grid input,
+.form-grid select,
+.form-grid button {
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.table-section table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-section th,
+.table-section td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.table-section button {
+  margin-right: 0.5rem;
+  padding: 0.3rem 0.7rem;
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.placeholder {
+  font-size: 1.2rem;
+  color: #666;
+  text-align: center;
+  margin-top: 3rem;
+}

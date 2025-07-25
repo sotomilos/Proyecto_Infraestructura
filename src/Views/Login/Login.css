@@ -86,3 +86,16 @@
     font-size: 24px;
     font-weight: 600;
   }
+
+  @media (max-width: 480px) {
+    .logo {
+      display: none;
+    }
+  }
+  
+  /* Si quieres hacerlo aún más estricto para 360×740 */
+  @media (max-width: 360px) and (max-height: 740px) {
+    .logo {
+      display: none;
+    }
+  }

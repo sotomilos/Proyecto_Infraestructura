@@ -1,16 +1,26 @@
+:root {
+  --navbar-width: 240px;
+  --navbar-width-mobile: 200px;
+  --navbar-transition: 0.3s ease;
+  --navbar-bg: var(--bg-alt, #f5f5f5);
+  --navbar-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  --navbar-header-height: 64px;
+}
 
 .app-nav {
-  width: 240px;
-  background: var(--bg-alt);
-  padding: 0.5rem;
+  width: var(--navbar-width);
+  background: var(--navbar-bg);
+  padding: 1rem;
   display: flex;
   flex-direction: column;
-  transition: transform 0.3s ease;
-  height: calc(100vh - 64px);
+  transition: transform var(--navbar-transition);
+  height: 100dvh;
   position: fixed;
   z-index: 999;
-  top: 64px;
+  top: var(--navbar-header-height);
   left: 0;
+  box-shadow: var(--navbar-shadow);
+  overflow: hidden;
 }
 
 .app-nav.closed {
@@ -20,34 +30,60 @@
 .nav-toggle {
   background: var(--color-primary);
   border: none;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   align-self: flex-end;
-  border: none;
   border-radius: 0.5rem;
   padding: 0.5rem 0.75rem;
-  font-size: 1.25rem;
   cursor: pointer;
-  margin-bottom: 0.1rem;
+  margin-bottom: 1rem;
   color: #fff;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+}
+
+.nav-toggle:hover {
+  background-color: var(--color-primary-dark, #c83418);
 }
 
 .nav-list {
-  flex: 1;
+  flex: none;              
+  max-height: calc(100% - 200px); 
   overflow-y: auto;
+  padding-right: 0.5rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-primary) transparent;
 }
 
-.nav-section + .nav-section {
-  margin-top: 5rem;
+.nav-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.nav-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.nav-list::-webkit-scrollbar-thumb {
+  background-color: var(--color-primary);
+  border-radius: 20px;
+}
+
+.nav-section {
+  margin-bottom: 2rem;
 }
 
 .nav-section-title {
   font-size: 16px;
   font-weight: 600;
   margin-bottom: 1rem;
-  margin-top: 5rem;
-  word-wrap: break-word;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  color: var(--text-dark, #333);
+  position: relative;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--color-primary, #e94a29);
 }
 
 .nav-link {
@@ -56,75 +92,122 @@
   align-items: center;
   font-size: 14px;
   font-weight: 400;
-  color: #333;
-  padding: 0.25rem 0;
+  color: var(--text-medium, #666);
+  padding: 0.5rem 0.75rem;
+  margin: 0.25rem 0;
   cursor: pointer;
   text-decoration: none;
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.2s ease;
-  word-wrap: break-word;
+  border-radius: 0.25rem;
+  transition: all 0.2s ease;
+  list-style: none;
 }
 
 .nav-link:hover {
-  border-bottom: 1px solid var(--color-primary);
+  background-color: rgba(0, 0, 0, 0.05);
   color: var(--color-primary);
+}
+
+.nav-link.active {
+  background-color: rgba(233, 74, 41, 0.1);
+  color: var(--color-primary);
+  font-weight: 500;
 }
 
 .nav-arrow {
-  width: 12px;
-  height: 12px;
+  width: 16px;
+  height: 16px;
   margin-left: 8px;
+  transition: transform 0.2s ease;
+  color: var(--color-primary, #e94a29);
+  opacity: 0.7;
+}
+
+.nav-link:hover .nav-arrow {
+  transform: translateX(3px);
+  opacity: 1;
 }
 
 .nav-logout {
-  margin-top: 2rem;
-  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
   font-size: 14px;
   font-weight: 600;
-  background: var(--bg-page);
-  color: var(--color-primary);
-  border: 1px solid var(--color-primary);
+  background: var(--bg-page, #fff);
+  color: var(--color-primary, #e94a29);
+  border: 1px solid var(--color-primary, #e94a29);
   border-radius: 0.5rem;
   cursor: pointer;
   text-align: center;
-  transition: background 0.2s ease;
+  transition: all 0.2s ease;
+  display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .logout-icon {
   margin-right: 0.75rem;
   width: 16px;
   height: 16px;
+  transition: transform 0.2s ease;
 }
 
 .nav-logout:hover {
-  background: var(--color-primary);
+  background: var(--color-primary, #e94a29);
   color: #fff;
+  box-shadow: 0 2px 6px rgba(233, 74, 41, 0.3);
+}
+
+.nav-logout:hover .logout-icon {
+  transform: translateX(-3px);
 }
 
 .nav-show-button {
   position: fixed;
-  top: 72px;
+  top: calc(var(--navbar-header-height) + 8px);
   left: 1rem;
   z-index: 1000;
-  background: var(--color-primary);
+  background: var(--color-primary, #e94a29);
   color: #fff;
   border: none;
   border-radius: 0.5rem;
   padding: 0.5rem 0.75rem;
   font-size: 1.25rem;
   cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-  transition: background 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .nav-show-button:hover {
-  background: #D93B1C;
+  background: var(--color-primary-dark, #c83418);
+  transform: scale(1.05);
+}
+
+@keyframes slideIn {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes slideOut {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
+
+.app-nav.open {
+  animation: slideIn 0.3s forwards;
+}
+
+.app-nav.closed {
+  animation: slideOut 0.3s forwards;
 }
 
 @media (max-width: 768px) {
   .app-nav {
-    width: 200px;
+    width: var(--navbar-width-mobile);
     padding: 0.75rem;
   }
 
@@ -134,17 +217,90 @@
 
   .nav-link {
     font-size: 13px;
+    padding: 0.4rem 0.5rem;
   }
 
   .nav-arrow {
     width: 10px;
     height: 10px;
   }
+
+  .nav-logout {
+    padding: 0.5rem;
+    font-size: 13px;
+  }
 }
 
 @media (max-width: 480px) {
   .app-nav {
+    width: 90%;
+    max-width: 300px;
+  }
+
+  .nav-toggle,
+  .nav-show-button {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+
+  .nav-section-title {
+    font-size: 13px;
+  }
+
+  .nav-link {
+    font-size: 12px;
+    padding: 0.4rem;
+  }
+
+  .nav-arrow {
+    width: 9px;
+    height: 9px;
+    margin-left: 4px;
+  }
+
+  .nav-logout {
+    font-size: 12px;
+    padding: 0.4rem;
+  }
+
+  .logout-icon {
+    margin-right: 0.5rem;
+    width: 14px;
+    height: 14px;
+  }
+}
+
+
+@media (max-width: 400px) {
+  .app-nav {
     width: 100%;
-    max-width: 90%;
+    padding: 0.5rem;
+  }
+
+  .nav-section-title {
+    font-size: 12px;
+  }
+
+  .nav-link {
+    font-size: 11.5px;
+    padding: 0.35rem;
+  }
+
+  .nav-arrow {
+    width: 8px;
+    height: 8px;
+  }
+
+  .nav-logout {
+    font-size: 11.5px;
+    padding: 0.4rem;
+  }
+
+  .nav-toggle,
+  .nav-show-button {
+    width: 34px;
+    height: 34px;
+    font-size: 0.95rem;
   }
 }

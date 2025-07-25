@@ -1,0 +1,29 @@
+.ingreso-maestro-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem;
+  }
+  
+  .placeholder {
+    font-size: 1.2rem;
+    color: #666;
+    text-align: center;
+    margin-top: 3rem;
+  }
+  
+  .layout-content {
+    transition: margin-left 0.3s ease;
+    margin-left: 240px;
+  }
+  
+  .navbar-hidden.layout-content {
+    margin-left: 0;
+  }
+  
+  @media (max-width: 768px) {
+    .layout-content {
+      margin-left: 0;
+    }
+  }
+  

@@ -1,0 +1,467 @@
+/* Estilos para los componentes CrearEquipo, ActualizarEquipo y EliminarEquipo */
+.equipo-section {
+  font-family: var(--font-base);
+  padding: 2rem;
+  
+  margin: 0 auto;
+  background-color: var(--bg-page);
+}
+
+.equipo-section h2 {
+  color: var(--color-primary);
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  border-bottom: 2px solid var(--color-primary);
+  padding-bottom: 0.5rem;
+}
+
+/* Contenedor del formulario de edición */
+.edit-form-container {
+  margin-bottom: 2rem;
+}
+
+/* Formulario grillado para Crear y Actualizar */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  padding: 2rem;
+  background-color: var(--bg-alt);
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  overflow: visible;
+}
+
+.form-section-title {
+  grid-column: 1 / -1;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  color: var(--color-primary);
+  border-bottom: 2px solid var(--color-primary);
+  padding-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+/* Labels y campos */
+.form-grid label {
+  font-weight: 500;
+  display: block;
+  margin-bottom: 0.4rem;
+  color: #333;
+}
+
+.form-grid input,
+.form-grid select,
+.form-grid textarea {
+  padding: 0.8rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  width: 100%;
+  font-family: var(--font-base);
+  font-size: 0.95rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-grid input:focus,
+.form-grid select:focus,
+.form-grid textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(216, 28, 35, 0.1);
+}
+
+.form-grid textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* Botón Crear Equipo */
+.submit-button {
+  grid-column: 1 / -1;
+  padding: 0.9rem 1.5rem;
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: var(--font-base);
+  font-size: 1rem;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.submit-button:hover {
+  background-color: #c01820;
+  transform: translateY(-1px);
+}
+
+/* Botones del formulario Actualizar/Eliminar */
+.form-buttons {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  justify-content: center;
+}
+
+.form-buttons button,
+.btn-primary,
+.btn-secondary,
+.btn-edit,
+.btn-delete {
+  padding: 0.9rem 1.5rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: var(--font-base);
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  min-width: 120px;
+  text-align: center;
+}
+
+.btn-primary,
+.form-buttons button[type="submit"] {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.btn-primary:hover,
+.form-buttons button[type="submit"]:hover {
+  background-color: #c01820;
+  transform: translateY(-1px);
+}
+
+.btn-secondary,
+.form-buttons button[type="button"] {
+  background-color: #6c757d;
+  color: white;
+}
+
+.btn-secondary:hover,
+.form-buttons button[type="button"]:hover {
+  background-color: #5a6268;
+  transform: translateY(-1px);
+}
+
+/* Botones de acción en tabla */
+.btn-edit,
+.btn-delete {
+  padding: 0.6rem 1rem;
+  font-size: 0.9rem;
+  min-width: auto;
+}
+
+.btn-edit {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.btn-edit:hover {
+  background-color: #c01820;
+}
+
+.btn-delete {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.btn-delete:hover {
+  background-color: #c01820;
+}
+
+/* Estilos Autocomplete para CrearEquipo */
+.autocomplete-input {
+  position: relative;
+  z-index: 2;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.autocomplete-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 2px;        /* un pequeño gap */
+  z-index: 10;            /* por encima de todo */
+  width: 100%;            /* igual que el input */
+  max-height: 200px;      /* altura máxima */
+  overflow-y: auto;       /* scroll interno si es muy largo */
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-radius: 0 0 6px 6px;
+}
+
+.autocomplete-list li {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.autocomplete-list li:hover {
+  background-color: var(--bg-alt);
+}
+
+.autocomplete-list .no-results {
+  padding: 0.5rem 1rem;
+  color: #777;
+  font-style: italic;
+}
+
+/* Estilos para buscador genérico */
+.search-container {
+  margin: 1.5rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+.search-input {
+  padding: 0.8rem 1rem;
+  width: 100%;
+  max-width: 500px;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  font-family: var(--font-base);
+  font-size: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(216, 28, 35, 0.1);
+}
+
+/* Tabla responsiva */
+.table-container {
+  margin: 1.5rem 0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.table-container.table-scroll {
+  max-height: 635px;      
+  overflow-y: auto;       
+  overflow-x: scroll;       
+  position: relative;
+}
+
+.responsive-table th,
+.responsive-table td {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.95rem;
+}
+
+.responsive-table {
+  width: 100%;
+}
+
+.responsive-table table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.responsive-table th {
+  background-color: var(--bg-alt);
+  color: #333;
+  font-weight: 600;
+  text-align: left;
+  padding: 1rem;
+  border: 1px solid #e0e0e0;
+}
+
+.responsive-table td input {
+  width: 100%;
+  min-width: 100%;
+  box-sizing: border-box;
+  padding: 6px 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+}
+
+.responsive-table td {
+  padding: 0.9rem 1rem;
+  border: 1px solid #e0e0e0;
+  vertical-align: middle;
+}
+
+.responsive-table tr:nth-child(even) {
+  background-color: var(--bg-alt);
+}
+
+.responsive-table tr:hover {
+  background-color: rgba(216, 28, 35, 0.05);
+}
+
+/* Mensajes */
+.error-message {
+  background-color: rgba(220, 53, 69, 0.1);
+  color: #dc3545;
+  padding: 0.8rem 1rem;
+  margin: 1rem 0;
+  border-radius: 6px;
+  border-left: 4px solid #dc3545;
+  font-weight: 500;
+}
+
+.loading-message {
+  text-align: center;
+  padding: 2rem;
+  color: #6c757d;
+  font-style: italic;
+}
+
+.no-results {
+  text-align: center;
+  padding: 2rem;
+  color: #6c757d;
+  font-style: italic;
+  background-color: var(--bg-alt);
+  border-radius: 6px;
+}
+
+/* Puedes poner esto en tu archivo de estilos correspondiente */
+.welcome-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+}
+.welcome-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px #0001;
+  padding: 2rem 2.5rem;
+  text-align: center;
+}
+.welcome-options {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+.option-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #f5f7fa;
+  border-radius: 10px;
+  padding: 1.2rem 1.5rem;
+  cursor: pointer;
+  transition: box-shadow 0.2s, background 0.2s;
+  box-shadow: 0 1px 6px #0001;
+  min-width: 110px;
+}
+.option-card:hover {
+  background: #e3eafc;
+  box-shadow: 0 2px 12px #1976d233;
+}
+.option-icon {
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-primary);
+}
+
+/* Media queries para responsividad */
+@media (max-width: 768px) {
+  .equipo-section {
+    padding: 1.5rem 1rem;
+  }
+  
+  .form-grid {
+    grid-template-columns: 1fr;
+    overflow: visible;
+    padding: 1.5rem;
+    gap: 1rem;
+  }
+  
+  .form-buttons {
+    flex-direction: column;
+  }
+  
+  .form-buttons button,
+  .submit-button {
+    width: 100%;
+  }
+  
+  /* Tabla responsiva */
+
+}
+
+/* Media query refinada para dispositivos muy pequeños (340px-480px) */
+@media (max-width: 480px) {
+  .equipo-section {
+    padding: 1rem 0.5rem;
+  }
+  
+  .equipo-section h2 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+  }
+  
+  .form-grid {
+    padding: 1rem;
+    gap: 0.75rem;
+  }
+  
+  .form-section-title {
+    font-size: 1.15rem;
+    margin-top: 1rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .form-grid input,
+  .form-grid select,
+  .form-grid textarea {
+    padding: 0.7rem;
+    font-size: 0.9rem;
+  }
+  
+  .form-buttons button,
+  .submit-button,
+  .btn-primary,
+  .btn-secondary {
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .btn-edit,
+  .btn-delete {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.85rem;
+  }
+  
+  .search-input {
+    padding: 0.7rem;
+    font-size: 0.9rem;
+  }
+  
+  /* Ajustes tabla en móvil */
+  .table-container.table-scroll {
+    max-height: 350px; /* Menor altura para pantallas pequeñas */
+    min-height: 180px;
+    overflow-x: scroll;
+    overflow-y: auto;
+  }
+
+  .responsive-table {
+    min-width: 600px; /* Fuerza scroll horizontal si hay muchas columnas */
+    font-size: 0.85rem;
+  }
+
+  .responsive-table th,
+  .responsive-table td {
+    padding: 0.3rem 0.4rem;
+    font-size: 0.85rem;
+    text-align: center;
+  }
+}

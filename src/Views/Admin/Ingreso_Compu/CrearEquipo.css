@@ -1,0 +1,390 @@
+
+/* Variables del proyecto */
+:root {
+  --color-primary: #D81C23;         /* Rojo corporativo */
+  --color-primary-dark: #b51720;    /* Variante oscura para hover */
+  --color-secondary: #4b5563;       /* Gris oscuro para textos */
+  --color-tertiary: #e5e7eb;        /* Gris claro para bordes */
+  --color-success: #10b981;         /* Verde para éxito */
+  --color-danger: #ef4444;          /* Rojo para errores */
+  --color-warning: #f59e0b;         /* Amarillo para advertencias */
+  --bg-page: #FFFFFF;               /* Fondo principal blanco */
+  --bg-alt: #F5F5F5;                /* Fondo alternativo gris claro */
+  --font-base: 'Poppins', sans-serif;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --transition-base: all 0.2s ease-in-out;
+}
+
+/* Sección principal */
+.ce-equipo-section {
+  font-family: var(--font-base);
+  padding: 2rem;
+  max-width: 1280px;
+  margin: 0 auto;
+  background-color: var(--bg-page);
+}
+.ce-equipo-section h2 {
+  color: var(--color-primary);
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1.75rem;
+  text-align: center;
+  position: relative;
+  padding-bottom: 0.75rem;
+}
+.ce-equipo-section h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background-color: var(--color-primary);
+  border-radius: 2px;
+}
+
+/* Formulario grid compacto */
+.ce-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem 1rem;
+  padding: 1.5rem;
+  background-color: var(--bg-alt);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--color-tertiary);
+  margin-bottom: 2rem;
+  box-sizing: border-box;
+  width: 50%;
+  margin : 0 auto;
+  overflow: visible;
+}
+
+/* Título de sección */
+.ce-form-section-title {
+  grid-column: 1 / -1;
+  margin: 1rem 0;
+  font-size: 1.5rem;
+  color: var(--color-primary);
+  padding-bottom: 0.5rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  margin: 0 0 1rem 0;
+  position: relative;
+}
+.ce-form-section-title::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 1.25rem;
+  background-color: var(--color-primary);
+  margin-right: 0.75rem;
+  border-radius: 2px;
+}
+.ce-form-section-title::after {
+  content: '';
+  flex-grow: 1;
+  height: 1px;
+  background-color: var(--color-tertiary);
+  margin-left: 0.75rem;
+}
+
+/* Ítem del formulario */
+.ce-form-item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.75rem;
+}
+.ce-form-grid label {
+  font-weight: 500;
+  color: var(--color-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  margin: auto;
+}
+.ce-form-grid label span {
+  color: var(--color-danger);
+  margin-left: 0.25rem;
+}
+
+/* Campos de entrada */
+.ce-form-grid input,
+.ce-form-grid select,
+.ce-form-grid textarea {
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--color-tertiary);
+  border-radius: var(--radius-md);
+  font-family: var(--font-base);
+  font-size: 0.95rem;
+  background-color: #FAFAFA;
+  transition: var(--transition-base);
+  width: 100%;
+}
+.ce-form-grid input:hover,
+.ce-form-grid select:hover,
+.ce-form-grid textarea:hover {
+  background-color: #FFFFFF;
+  border-color: #d1d5db;
+}
+.ce-form-grid input:focus,
+.ce-form-grid select:focus,
+.ce-form-grid textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(216, 28, 35, 0.15);
+  background-color: #FFFFFF;
+}
+.ce-form-grid textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+.ce-form-grid input[type="date"] {
+  color: var(--color-secondary);
+}
+
+/* Autocomplete */
+.ce-autocomplete-input {
+  position: relative;
+  z-index: 5;
+}
+.ce-autocomplete-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: -1px;
+  max-height: 200px;
+  overflow-y: auto;
+  background-color: #FFF;
+  border: 1px solid var(--color-primary);
+  border-top: none;
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  box-shadow: var(--shadow-md);
+  z-index: 10;
+}
+.ce-autocomplete-list li {
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  border-bottom: 1px solid #f3f4f6;
+}
+.ce-autocomplete-list li:last-child {
+  border-bottom: none;
+}
+.ce-autocomplete-list li:hover {
+  background-color: rgba(37, 99, 235, 0.05);
+}
+.ce-autocomplete-list .no-results {
+  padding: 0.75rem 1rem;
+  color: #6b7280;
+  font-style: italic;
+  text-align: center;
+}
+
+/* Botón Crear Equipo */
+.ce-submit-button {
+  grid-column: 1 / -1;
+  padding: 1rem 1.5rem;
+  margin-top: 1.5rem;
+  background-color: var(--color-primary);
+  color: #FFF;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-base);
+  display: flex;
+  justify-content: center;
+}
+.ce-submit-button:hover {
+  background-color: var(--color-primary-dark);
+  transform: translateY(-2px);
+}
+
+/* Mensajes de error */
+.ce-error-message {
+  color: var(--color-danger);
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+  display: block;
+  padding-left: 0.5rem;
+}
+.ce-error-message::before {
+  content: '⚠️ ';
+  margin-right: 0.25rem;
+  font-size: 0.75rem;
+}
+
+/* Responsive con mejor adaptación a móviles */
+@media (max-width: 1024px) {
+  .ce-form-grid {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 2rem;
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .ce-form-grid {
+    grid-template-columns: 1fr;
+    padding: 1.5rem;
+    gap: 1.25rem;
+    width: 100%;
+  }
+  
+  .ce-equipo-section {
+    padding: 1.5rem 1rem;
+  }
+  
+  .ce-form-section-title {
+    font-size: 1.25rem;
+  }
+  
+  .ce-submit-button {
+    padding: 0.875rem 1.25rem;
+  }
+}
+
+/* Optimización específica para pantallas pequeñas (360px) */
+@media (max-width: 480px) {
+  .ce-equipo-section {
+    padding: 1rem 0.75rem;
+  }
+  
+  .ce-form-grid {
+    padding: 1.25rem 1rem;
+    gap: 1rem;
+    border-radius: var(--radius-md);
+    width: 100%;
+  }
+  
+  .ce-form-grid input,
+  .ce-form-grid select,
+  .ce-form-grid textarea {
+    padding: 0.7rem 0.875rem;
+    font-size: 0.9rem;
+  }
+  
+  .ce-form-section-title {
+    font-size: 1.125rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .ce-form-grid label {
+    font-size: 0.85rem;
+    margin-bottom: 0.375rem;
+  }
+  
+  .ce-submit-button {
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+  }
+  
+  /* Ocultar decoración en títulos para pantallas pequeñas */
+  .ce-form-section-title::before {
+    width: 3px;
+    height: 1rem;
+    margin-right: 0.5rem;
+  }
+  
+  /* Reducir el tamaño del botón en pantallas pequeñas para mejor encaje */
+  .ce-equipo-section h2 {
+    font-size: 1.5rem;
+  }
+  
+  /* Ajustar el alto máximo de las listas de autocompletado */
+  .ce-autocomplete-list {
+    max-height: 180px;
+  }
+}
+
+/* Estilos adicionales para inputs monetarios */
+input[name="CostoMes"],
+input[name="ValorSeguro"],
+input[name="CostoLicAbsolute"] {
+  font-family: var(--font-base);
+  text-align: right;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 10px center;
+  background-size: 16px;
+  padding-left: 35px;
+  padding-right: 10px; /* Asegurar espacio para texto alineado a la derecha */
+  color: var(--color-secondary);
+}
+
+/* Estado visual para campos completados correctamente */
+.ce-form-grid input:valid:not(:placeholder-shown):not([type="date"]),
+.ce-form-grid select:valid:not(:placeholder-shown) {
+  border-color: var(--color-tertiary);
+  border-left: 3px solid var(--color-success);
+  background-position: right 10px center;
+  padding-right: 35px;
+}
+
+/* Estados de carga para cuando se envía el formulario */
+.ce-submit-button.loading {
+  position: relative;
+  color: transparent;
+}
+
+.ce-submit-button.loading::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Estilos adicionales para mejorar la experiencia de usuario */
+.ce-form-layout-helper {
+  display: contents;
+}
+
+.ce-form-layout-helper > div {
+  position: relative;
+}
+
+/* Tooltips para ayuda contextual */
+.ce-tooltip {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 0.75rem;
+  color: var(--color-primary);
+  cursor: pointer;
+}
+
+.ce-tooltip:hover::before {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: -30px;
+  right: 0;
+  background: var(--color-secondary);
+  color: white;
+  padding: 0.5rem;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+  z-index: 20;
+  font-weight: normal;
+}
+
+/* Efecto de elevación en el formulario al interactuar */
+.ce-form-grid:focus-within {
+  box-shadow: var(--shadow-lg), 0 0 0 3px rgba(37, 99, 235, 0.1);
+}

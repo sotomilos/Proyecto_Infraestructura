@@ -1,0 +1,41 @@
+.redes-modal-backdrop {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.redes-modal-content {
+  background: #fff;
+  border-radius: 10px;
+  max-width: 95vw;
+  width: 90vw;
+  max-height: 90vh;
+  min-height: 60vh;
+  overflow: auto;
+  padding: 2rem;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.redes-modal-close {
+  position: absolute;
+  top: 18px;
+  right: 30px;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .redes-modal-content {
+    width: 98vw;
+    padding: 0.5rem;
+  }
+}

@@ -1,0 +1,318 @@
+/* ——————————————  
+   Layout principal  
+   —————————————— */
+   .control-compu-page {
+    font-family: var(--font-base);
+    background-color: var(--bg-page);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Contenedor interior */
+  .layout-body {
+    display: grid;
+    flex: 1;
+    overflow: visible;
+  }
+  
+  /* Área de contenido ajustable */
+  .layout-content {
+    flex: 1;
+    background-color: var(--bg-alt);
+    padding: 2rem;
+    overflow-y: auto;
+    transition: margin-left 0.3s ease;
+    margin-left: 240px;
+  }
+  
+  /* ——————————————  
+     Formularios  
+     —————————————— */
+  .form-section {
+    background-color: var(--bg-page);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 2rem;
+  }
+  
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .form-item {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  
+  .form-item label {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+  
+  .form-item input,
+  .form-item select,
+  .form-item textarea {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  /* Icono buscador */
+  .icon-search {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    background: url('/Icono_buscar.png') no-repeat center/contain;
+    cursor: pointer;
+  }
+  
+  /* ——————————————  
+     Botones  
+     —————————————— */
+  button {
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 4px;
+    background-color: var(--color-primary);
+    color: #fff;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  
+  button.btn-secondary {
+    background-color: #7f8c8d;
+  }
+  
+  button.btn-delete {
+    background-color: #c0392b;
+  }
+  
+  button:disabled {
+    opacity: 0.6;
+    cursor: default;
+  }
+  
+  button:hover:not(:disabled) {
+    opacity: 0.85;
+  }
+  button.btn-view {
+    /* Padding más estrecho sólo en los lados horizontales */
+    padding: 0.2rem 0.5rem;
+
+    /* Que el ancho sea automático según el contenido */
+    width: auto;
+    min-width: 0;
+
+    /* Tamaño de fuente más pequeño */
+    font-size: 0.75rem;
+
+    /* Ajustes visuales opcionales */
+    line-height: 1;
+  }
+  /* ——————————————  
+     Tabla responsiva  
+     —————————————— */
+  .table-container {
+    margin-bottom: 2rem;
+  }
+  
+  .responsive-table {
+    width: 100%;
+    border-collapse: collapse;
+    display: block;
+
+  }
+  
+  /* Encabezados y celdas */
+  .responsive-table th,
+  .responsive-table td {
+    padding: 0.5rem;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+    white-space: nowrap; /* evita que el texto se divida en varias líneas */
+    overflow: visible;
+    overflow-x: visible;
+  }
+  
+.responsive-table td input {
+  width: 100%;
+  min-width: 100%;
+  box-sizing: border-box;
+  padding: 6px 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+}
+
+  /* Rayas alternas */
+  .responsive-table tr:nth-child(even) {
+    background-color: var(--bg-page);
+  }
+
+  /* Contenedor scrollable */
+  .table-scroll {
+    overflow-x: scroll;
+    max-height: auto;  
+  }
+
+  .table-scroll .responsive-table {
+    min-width: 100%;     /* para que el scroll horizontal siempre aparezca si la tabla es más ancha */
+  }
+
+
+  /* ——————————————  
+     pop‑up de licencias
+     —————————————— */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;               /* nos ayuda a centrar el contenido */
+  align-items: center;         /* centrado vertical */
+  justify-content: center;     /* centrado horizontal */
+  z-index: 1000;               /* por encima de todo */
+}
+
+/* El “pop‑up” en sí */
+.modal-content {
+  background: #fff;
+  border-radius: 8px;
+  padding: 1.5rem;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  position: relative;
+  animation: fadeInScale 0.2s ease-out;
+}
+
+/* Botón de cerrar */
+.modal-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.75rem;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--color-secondary);
+  transition: color 0.2s;
+}
+.modal-close:hover {
+  color: var(--color-danger);
+}
+
+/* Lista de licencias */
+.lic-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0;
+}
+.lic-list li {
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+/* Animación de aparición */
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+  
+  /* ——————————————  
+     Media Queries  
+     —————————————— */
+  /* Tablets y móviles grandes */
+  @media (max-width: 1024px) {
+    .layout-content {
+      padding: 1.5rem;
+      margin-left: 0; /* cerrar sidebar en tablets si necesitas */
+    }
+    .form-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+  
+  /* Móviles medianos */
+  @media (max-width: 768px) {
+    .layout-body {
+      flex-direction: column;
+    }
+    .layout-content {
+      padding: 1rem;
+    }
+    .form-grid {
+      grid-template-columns: 1fr;
+    }
+    .responsive-table th {
+      display: none;
+    }
+    .responsive-table td {
+      display: block;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 0.75rem 0.5rem;
+      position: relative;
+    }
+    .responsive-table td::before {
+      content: attr(data-label);
+      font-weight: 600;
+      position: absolute;
+      left: 0.5rem;
+      top: 0.75rem;
+    }
+    .responsive-table tr {
+      display: block;
+      margin-bottom: 1rem;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+    }
+  }
+  
+  /* Móviles muy pequeños */
+  @media (max-width: 480px) {
+    .layout-content {
+      padding: 0.5rem;
+    }
+    .form-section {
+      padding: 1rem;
+    }
+    .form-item input,
+    .form-item select,
+    .form-item textarea {
+      font-size: 0.8rem;
+      padding: 0.4rem;
+    }
+    button {
+      font-size: 0.8rem;
+      padding: 0.4rem 0.8rem;
+    }
+    .responsive-table td {
+      padding: 0.5rem 0.4rem;
+    }
+  }
+  
